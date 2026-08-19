@@ -1616,18 +1616,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const achievementsSplide = new Splide(achievementsEl, {
         type: 'loop',
         direction: 'ltr',
-        perPage: 5,       // desktop: 5 cards per view
+        perPage: 8,       // desktop: 5 cards per view
         gap: 16,
         arrows: false,
         pagination: false,
         drag: 'free',
         clones: slideCount * 4,
         breakpoints: {
-            1440: { perPage: 4 },
-            1200: { perPage: 3.5 },
-            991: { perPage: 2.5 },
-            776: { perPage: 2.5 },
-            667: { perPage: 2, gap: 8 },
+            1440: { perPage: 6 },
+            1200: { perPage: 5.5 },
+            991: { perPage: 4.5 },
+            776: { perPage: 3.5 },
+            667: { perPage: 2.5, gap: 8 },
         },
         autoScroll: {
             speed: 0.5,

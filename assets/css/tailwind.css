@@ -791,6 +791,12 @@ background: linear-gradient(180deg, #001B55 0%, #00D8FF 100%);
 .real-estate-price-bg{
     background-image: url('../images/realestate-price-bg.webp');
 }
+.counter-realestate-bg{
+     background-image: url('../images/counter-realestate.webp');
+}
+.realestate-testimonial-bg{
+     background-image: url('../images/realestate-testimonial-bg.webp');
+}
 /* banner section end */
 
 

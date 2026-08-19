@@ -1598,73 +1598,138 @@ if (allIndustriesGrid) {
 
 
 
-// Pixxen Dental js start from here (Noman)
 
 
 
 
-// Dental FAQ section
+
+
+
+
+
+//location real estate website industry page-
+
+document.addEventListener('DOMContentLoaded', () => {
+    const achievementsEl = document.querySelector('.achievements-slider');
+    if (!achievementsEl) return;
+    const slideCount = achievementsEl.querySelectorAll('.splide__slide').length;
+    const achievementsSplide = new Splide(achievementsEl, {
+        type: 'loop',
+        direction: 'ltr',
+        perPage: 5,       // desktop: 5 cards per view
+        gap: 16,
+        arrows: false,
+        pagination: false,
+        drag: 'free',
+        clones: slideCount * 4,
+        breakpoints: {
+            1440: { perPage: 4 },
+            1200: { perPage: 3.5 },
+            991: { perPage: 2.5 },
+            776: { perPage: 2.5 },
+            667: { perPage: 2, gap: 8 },
+        },
+        autoScroll: {
+            speed: 0.5,
+            pauseOnHover: true,
+            pauseOnFocus: false,
+        },
+    });
+    achievementsSplide.on('mounted', () => {
+        const autoScroll = achievementsSplide.Components.AutoScroll;
+        achievementsSplide.on('drag', () => autoScroll.pause());
+        achievementsSplide.on('dragged', () => autoScroll.play());
+    });
+    achievementsSplide.mount({ AutoScroll: window.splide.Extensions.AutoScroll });
+});
+
+
+//real estate success stories 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const successStoriesEl = document.querySelector('.success-stories-slider');
+    if (!successStoriesEl) return;
+    const successStoriesSplide = new Splide(successStoriesEl, {
+        type: 'loop',
+        direction: 'ltr',
+        gap: 24,
+        arrows: false,
+        pagination: false,
+        drag: 'free',
+        autoWidth: false,
+        fixedWidth: '620px',   // stable card width — fixes the jitter/vanishing-card bug caused by fractional perPage recalculating mid-drag
+        breakpoints: {
+            1440: { fixedWidth: '560px', gap: 24 },
+            1200: { fixedWidth: '520px', gap: 24 },
+            991:  { fixedWidth: '460px', gap: 24 },
+            767:  { fixedWidth: '400px', gap: 16 },
+            480:  { fixedWidth: '300px', gap: 12 },
+        },
+        autoScroll: {
+            speed: 0.5,
+            pauseOnHover: true,
+            pauseOnFocus: false,
+        },
+    });
+    successStoriesSplide.on('mounted', () => {
+        const autoScroll = successStoriesSplide.Components.AutoScroll;
+        successStoriesSplide.on('drag', () => autoScroll.pause());
+        successStoriesSplide.on('dragged', () => autoScroll.play());
+    });
+    successStoriesSplide.mount({ AutoScroll: window.splide.Extensions.AutoScroll });
+});
+
+
+//real estate faq 
+
 document.addEventListener("DOMContentLoaded", () => {
-  const items = document.querySelectorAll(".dental-faq-item");
-
+  const items = document.querySelectorAll(".re-faq-item");
   items.forEach(item => {
-    gsap.set(item.querySelector(".dental-faq-content"), {
+    gsap.set(item.querySelector(".re-faq-content"), {
       height: 0,
       overflow: "hidden"
     });
   });
-
   function closeAll() {
     items.forEach(item => {
       item.classList.remove("is-active");
-
-      gsap.to(item.querySelector(".dental-faq-content"), {
+      gsap.to(item.querySelector(".re-faq-content"), {
         height: 0,
         duration: 0.4,
         ease: "power2.inOut"
       });
-
-      gsap.to(item.querySelector(".dental-faq-plus"), {
+      gsap.to(item.querySelector(".re-faq-plus"), {
         rotate: 0,
         duration: 0.35,
         ease: "power2.out"
       });
-
       gsap.to(item.querySelector(".vertical-line"), {
         scaleY: 1,
         duration: 0.2
       });
     });
   }
-
   items.forEach(item => {
-    const trigger = item.querySelector(".dental-faq-trigger");
-    const content = item.querySelector(".dental-faq-content");
-    const icon = item.querySelector(".dental-faq-plus");
+    const trigger = item.querySelector(".re-faq-trigger");
+    const content = item.querySelector(".re-faq-content");
+    const icon = item.querySelector(".re-faq-plus");
     const verticalLine = item.querySelector(".vertical-line");
-
     trigger.addEventListener("click", () => {
       const isOpen = item.classList.contains("is-active");
-
       closeAll();
-
       if (!isOpen) {
         item.classList.add("is-active");
-
         gsap.to(content, {
           height: "auto",
           duration: 0.4,
           ease: "power2.inOut"
         });
-
-        // Rotate icon
         gsap.to(icon, {
           rotate: 180,
           duration: 0.35,
           ease: "power2.out"
         });
-
-        // Hide vertical line => minus
         gsap.to(verticalLine, {
           scaleY: 0,
           duration: 0.2,
@@ -1673,64 +1738,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-});
-
-
-
-// dental marque slide
-document.addEventListener('DOMContentLoaded', function () {
-
-    function initTextTicker(selector) {
-        document.querySelectorAll(selector).forEach((slider) => {
-            new Splide(slider, {
-                type: 'loop',
-                drag: 'free',
-                focus: 'center',
-                perPage: 6,
-                autoWidth: true,
-                gap: 0,
-                arrows: false,
-                pagination: false,
-                autoScroll: {
-                    speed: 2,
-                    pauseOnHover: false,
-                    pauseOnFocus: false,
-                },
-            }).mount(window.splide.Extensions);
-        });
-    }
-
-    initTextTicker('#dental-text-ticker');
-
-});
-
-
-// 
-function initSmoothScrollArrow(selector, scrollAmount = 800) {
-    const arrows = document.querySelectorAll(selector);
-
-    if (!arrows.length) return;
-
-    // Pulse animation
-    gsap.to(selector, {
-        opacity: 0.8,
-        y: 8,
-        duration: 1.2,
-        ease: "power1.inOut",
-        repeat: -1,
-        yoyo: true
-    });
-
-    arrows.forEach((arrow) => {
-        arrow.addEventListener("click", () => {
-            lenis.scrollTo(window.scrollY + scrollAmount, {
-                duration: 1.2,
-                easing: (t) => 1 - Math.pow(1 - t, 3)
-            });
-        });
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    initSmoothScrollArrow(".dental-banner-down-arrow");
 });

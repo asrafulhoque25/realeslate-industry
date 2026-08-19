@@ -1621,10 +1621,10 @@ document.addEventListener('DOMContentLoaded', () => {
         arrows: false,
         pagination: false,
         drag: 'free',
-        clones: slideCount * 4,
+        
         breakpoints: {
             1440: { perPage: 6 },
-            1200: { perPage: 5.5 },
+            1200: { perPage: .5 },
             991: { perPage: 4.5 },
             776: { perPage: 3.5 },
             667: { perPage: 2.5, gap: 8 },
